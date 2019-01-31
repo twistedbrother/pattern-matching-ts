@@ -21,7 +21,7 @@ describe("Patter matching tests", () => {
         const actual= when(condition, execution);
 
         // Assert
-        expect(expected).toEqual(actual);
+        expect(actual).toEqual(expected);
     });
 
     it("Should return a result when a pattern is matching", () => {
@@ -29,14 +29,37 @@ describe("Patter matching tests", () => {
         const expected = 42;
 
         // Act
-        const actual = match(
-            1337,
-            when((v) => v === 1, (v) => 42),
-            when((v) => v === 42, (v) => 1337),
-            when((v) => v === 1337, (v) => 42)
-        );
+        const actual = match(1337)(
+            when(
+                (v) => v === 42, 
+                (v) => 1337
+            ),
+            when(
+                (v) => v === 1337, 
+                (v) => 42
+            )
+        )(_ => _);
 
         // Assert
-        expect(expected).toEqual(actual);
+        expect(actual).toEqual(expected);
+    });
+
+    it("Should return a default result when no patterns are matching", () => {
+        // Arrange
+        const expected = 9;
+
+        // Act
+        const actual = match(1)(
+            when(
+                (v) => v === 42, 
+                (v) => 1337
+            ),
+            when(
+                (v) => v === 1337, 
+                (v) => 42)
+        )( _ => 9);
+
+        // Assert
+        expect(actual).toEqual(expected);
     });
 });

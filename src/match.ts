@@ -17,19 +17,16 @@ const when = <TValue, TResult>(
   };
 };
 
-const match = <TValue, TResult>(
-  value: TValue,
+const match = <TValue, TResult>(value: TValue) => (
   ...patterns: Array<Pattern<TValue, TResult>>
-) => {
+) => (defaultExecute: Execution<TValue, TResult>) => {
   const filteredPatterns = patterns.filter(
-    (pattern: Pattern<TValue, TResult>) => {
-      return pattern.condition(value);
-    }
+    (pattern: Pattern<TValue, TResult>) => pattern.condition(value)
   );
 
-  return filteredPatterns.length === 1
+  return filteredPatterns.length >= 1
     ? filteredPatterns[0].execution(value)
-    : null;
+    : defaultExecute(value);
 };
 
 export { Condition, Execution, Pattern, when, match };
