@@ -14,8 +14,9 @@
     "TypeScript"
   ],
   "scripts": {
-    "test": "jest",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "test": "npm run format && npm run lint && jest",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "format": "prettier --write '{src, test}/**/*.ts'"
   },
   "repository": {
     "type": "git",
