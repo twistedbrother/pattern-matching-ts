@@ -1,0 +1,36 @@
+{
+  "name": "pattern-matching-ts",
+  "version": "1.0.0-alpha",
+  "description": "A simple &amp; ambitionless pattern matching library for TypeScript!",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "README.md",
+    "lib/"
+  ],
+  "keywords": [
+    "Functional programming",
+    "Pattern matching",
+    "TypeScript"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spontoreau/pattern-matching-ts.git"
+  },
+  "author": "Sylvain Pontoreau <pontoreau.sylvain@gmail.com>",
+  "contributors": [
+    {
+      "name": "Sylvain Pontoreau",
+      "email": "pontoreau.sylvain@gmail.com",
+      "url": "https://sylvain.pontoreau.com"
+    }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spontoreau/pattern-matching-ts/issues"
+  },
+  "homepage": "https://github.com/spontoreau/pattern-matching-ts#readme"
+}
