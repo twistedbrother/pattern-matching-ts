@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/spontoreau/pattern-matching-ts/issues"
   },
-  "homepage": "https://github.com/spontoreau/pattern-matching-ts#readme"
+  "homepage": "https://github.com/spontoreau/pattern-matching-ts#readme",
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  }
 }
