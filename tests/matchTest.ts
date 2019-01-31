@@ -2,7 +2,8 @@ import {
     Condition,
     Execution,
     Pattern,
-    when
+    when,
+    match
 } from "../src/match";
 
 describe("Patter matching tests", () => {
@@ -18,6 +19,22 @@ describe("Patter matching tests", () => {
 
         // Act
         const actual= when(condition, execution);
+
+        // Assert
+        expect(expected).toEqual(actual);
+    });
+
+    it("Should return a result when a pattern is matching", () => {
+        // Arrange
+        const expected = 42;
+
+        // Act
+        const actual = match(
+            1337,
+            when((v) => v === 1, (v) => 42),
+            when((v) => v === 42, (v) => 1337),
+            when((v) => v === 1337, (v) => 42)
+        );
 
         // Assert
         expect(expected).toEqual(actual);
