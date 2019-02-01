@@ -24,7 +24,7 @@ describe("Patter matching tests", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Should return a result when a pattern is matching", () => {
+    it("Should return a result when a pattern is matched", () => {
         // Arrange
         const expected = 42;
 
@@ -32,11 +32,11 @@ describe("Patter matching tests", () => {
         const actual = match(1337)(
             when(
                 (v) => v === 42, 
-                (v) => 1337
+                () => 1337
             ),
             when(
                 (v) => v === 1337, 
-                (v) => 42
+                () => 42
             )
         )(_ => _);
 
@@ -44,7 +44,7 @@ describe("Patter matching tests", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Should return a default result when no patterns are matching and a wildcare is defined", () => {
+    it("Should return a default result when no patterns are matched and a wildcare is defined", () => {
         // Arrange
         const expected = 9;
 
@@ -52,14 +52,28 @@ describe("Patter matching tests", () => {
         const actual = match(1)(
             when(
                 (v) => v === 42, 
-                (v) => 1337
+                () => 1337
             ),
             when(
                 (v) => v === 1337, 
-                (v) => 42)
+                () => 42)
         )( _ => 9);
 
         // Assert
         expect(actual).toEqual(expected);
     });
+
+    it("Should return an error when no patterns are matched and no wildcare is defined", () => {
+        expect(() => {
+            match(1)(
+                when(
+                    (v) => v === 42, 
+                    () => 1337
+                ),
+                when(
+                    (v) => v === 1337, 
+                    () => 42)
+            )()
+        }).toThrowError("Error: No pattern matched. Consider using a wildcare pattern.");
+    })
 });
