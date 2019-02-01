@@ -44,7 +44,7 @@ describe("Patter matching tests", () => {
         expect(actual).toEqual(expected);
     });
 
-    it("Should return a default result when no patterns are matching", () => {
+    it("Should return a default result when no patterns are matching and a wildcare is defined", () => {
         // Arrange
         const expected = 9;
 
