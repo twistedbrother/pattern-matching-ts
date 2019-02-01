@@ -18,7 +18,7 @@ describe("Patter matching tests", () => {
         }
 
         // Act
-        const actual= when(condition, execution);
+        const actual= when(condition)(execution);
 
         // Assert
         expect(actual).toEqual(expected);
@@ -30,14 +30,8 @@ describe("Patter matching tests", () => {
 
         // Act
         const actual = match(1337)(
-            when(
-                (v) => v === 42, 
-                () => 1337
-            ),
-            when(
-                (v) => v === 1337, 
-                () => 42
-            )
+            when(v => v === 42)(v => 1337),
+            when(v => v === 1337)(v => 42)
         )(_ => _);
 
         // Assert
@@ -50,13 +44,8 @@ describe("Patter matching tests", () => {
 
         // Act
         const actual = match(1)(
-            when(
-                (v) => v === 42, 
-                () => 1337
-            ),
-            when(
-                (v) => v === 1337, 
-                () => 42)
+            when(v => v === 42)(v => 1337),
+            when(v => v === 1337)(v => 42)
         )( _ => 9);
 
         // Assert
@@ -66,14 +55,9 @@ describe("Patter matching tests", () => {
     it("Should return an error when no patterns are matched and no wildcare is defined", () => {
         expect(() => {
             match(1)(
-                when(
-                    (v) => v === 42, 
-                    () => 1337
-                ),
-                when(
-                    (v) => v === 1337, 
-                    () => 42)
+                when(v => v === 42)(v => 1337),
+                when(v => v === 1337)(v => 42)
             )()
-        }).toThrowError("Error: No pattern matched. Consider using a wildcare pattern.");
+        }).toThrowError("Error: No pattern matched. Please use a wildcard pattern.");
     })
 });

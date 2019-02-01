@@ -7,13 +7,12 @@ type Pattern<TValue, TResult> = {
   execution: Execution<TValue, TResult>;
 };
 
-const when = <TValue, TResult>(
-  condition: Condition<TValue>,
-  execution: Execution<TValue, TResult>
-) => {
-  return {
-    condition,
-    execution
+const when = <TValue, TResult>(condition: Condition<TValue>) => {
+  return (execution: Execution<TValue, TResult>) => {
+    return {
+      condition,
+      execution
+    };
   };
 };
 
@@ -32,9 +31,7 @@ const match = <TValue, TResult>(value: TValue) => (
 };
 
 const throwError = <TResult>(): TResult => {
-  throw new Error(
-    "Error: No pattern matched. Consider to use a wildcard pattern."
-  );
+  throw new Error("Error: No pattern matched. Please use a wildcard pattern.");
 };
 
 export { Condition, Execution, Pattern, when, match };
